@@ -4,3 +4,19 @@
   align-items: center;
   justify-content: center;
 }
+
+.calculator-visor {
+  background-color: rgb(156, 150, 150);
+  border-radius: 8px;
+  border-style: solid;
+  border-color: black;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+
+#text-calculator {
+  margin: 0px;
+  padding-right: 2px;
+}

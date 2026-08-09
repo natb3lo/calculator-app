@@ -1,44 +1,67 @@
 import "./App.css";
 import { useState } from "react";
 import { Button } from "./components/Button";
+import { Visor } from "./components/Visor";
 
 function App() {
-  const [value, setValue] = useState({ number: 0, operation: "" });
+  const [value, setValue] = useState({
+    number: 0,
+    operation: "0",
+    history: [],
+  });
+
+  //console.log(value.history);
 
   /** */
   const handleClick = (operation) => {
-    setValue({ ...value, number: value.number + operation });
+    //console.log("Operation: ", operation);
+    if (value.history.length === 0) {
+      setValue({
+        ...value,
+        operation: operation,
+        history: value.history.concat(operation),
+      });
+    } else {
+      setValue({
+        ...value,
+        operation: value.operation + operation,
+        history: value.history.concat(operation),
+      });
+    }
   };
 
   return (
     <>
+      <div className="calculator-visor">
+        <Visor info={value.operation}></Visor>
+      </div>
       <div className="operation-box">
         <div className="row-1">
           <Button
-            name=""
+            name="X"
             onClick={() => {
-              handleClick();
+              handleClick("X");
             }}
           ></Button>
 
           <Button
-            name=""
+            name="AC"
             onClick={() => {
-              handleClick();
+              handleClick("AC");
             }}
           ></Button>
 
           <Button
-            name=""
+            name="%"
             onClick={() => {
-              handleClick();
+              handleClick("%");
             }}
           ></Button>
 
           <Button
-            name=""
+            name="÷"
             onClick={() => {
-              handleClick;
+              handleClick("÷");
             }}
           ></Button>
         </div>
@@ -46,103 +69,103 @@ function App() {
           <Button
             name="7"
             onClick={() => {
-              handleClick(7);
+              handleClick("7");
             }}
           ></Button>
           <Button
-            name=""
+            name="8"
             onClick={() => {
-              handleClick();
+              handleClick("8");
             }}
           ></Button>
           <Button
-            name=""
+            name="9"
             onClick={() => {
-              handleClick();
+              handleClick("9");
             }}
           ></Button>
           <Button
-            name=""
+            name="*"
             onClick={() => {
-              handleClick();
+              handleClick("*");
             }}
           ></Button>
         </div>
         <div className="row-3">
           <Button
-            name=""
+            name="4"
             onClick={() => {
-              handleClick();
+              handleClick("4");
             }}
           ></Button>
           <Button
-            name=""
+            name="5"
             onClick={() => {
-              handleClick();
+              handleClick("5");
             }}
           ></Button>
           <Button
-            name=""
+            name="6"
             onClick={() => {
-              handleClick();
+              handleClick("6");
             }}
           ></Button>
           <Button
-            name=""
+            name="-"
             onClick={() => {
-              handleClick();
+              handleClick("-");
             }}
           ></Button>
         </div>
         <div className="row-4">
           <Button
-            name=""
+            name="1"
             onClick={() => {
-              handleClick();
+              handleClick("1");
             }}
           ></Button>
           <Button
-            name=""
+            name="2"
             onClick={() => {
-              handleClick();
+              handleClick("2");
             }}
           ></Button>
           <Button
-            name=""
+            name="3"
             onClick={() => {
-              handleClick();
+              handleClick("3");
             }}
           ></Button>
           <Button
-            name=""
+            name="+"
             onClick={() => {
-              handleClick();
+              handleClick("+");
             }}
           ></Button>
         </div>
         <div className="row-5">
           <Button
-            name=""
+            name="+/-"
             onClick={() => {
-              handleClick();
+              handleClick("+/-");
             }}
           ></Button>
           <Button
-            name=""
+            name="0"
             onClick={() => {
-              handleClick();
+              handleClick("0");
             }}
           ></Button>
           <Button
-            name=""
+            name=","
             onClick={() => {
-              handleClick();
+              handleClick(",");
             }}
           ></Button>
           <Button
-            name=""
+            name="="
             onClick={() => {
-              handleClick();
+              handleClick("=");
             }}
           ></Button>
         </div>
