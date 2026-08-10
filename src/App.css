@@ -3,9 +3,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .calculator-visor {
@@ -19,7 +20,7 @@
   flex-direction: row;
   margin-right: 12px;
   margin-left: 12px;
-  margin-top: 20px;
+  margin-top: 30px;
   height: 50px;
 }
 
@@ -52,8 +53,19 @@ button {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-
   cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(151, 150, 150);
+}
+
+.border-button {
+  background-color: orange;
+}
+
+.border-button:hover {
+  background-color: rgb(240, 134, 47);
 }
 
 .text-calculator-wrapper {

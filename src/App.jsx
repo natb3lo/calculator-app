@@ -60,6 +60,7 @@ function App() {
             ></Button>
 
             <Button
+              className="border-button"
               name="÷"
               onClick={() => {
                 handleClick("÷");
@@ -86,6 +87,7 @@ function App() {
               }}
             ></Button>
             <Button
+              className="border-button"
               name="*"
               onClick={() => {
                 handleClick("*");
@@ -112,6 +114,7 @@ function App() {
               }}
             ></Button>
             <Button
+              className="border-button"
               name="-"
               onClick={() => {
                 handleClick("-");
@@ -138,6 +141,7 @@ function App() {
               }}
             ></Button>
             <Button
+              className="border-button"
               name="+"
               onClick={() => {
                 handleClick("+");
@@ -164,6 +168,7 @@ function App() {
               }}
             ></Button>
             <Button
+              className="border-button"
               name="="
               onClick={() => {
                 handleClick("=");
