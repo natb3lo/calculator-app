@@ -1,0 +1,10 @@
+services:
+  app:
+    container_name: calculator-app-dev
+    image: calculator-app-dev:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    ports:
+      - "5173:5173"
