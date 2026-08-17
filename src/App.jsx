@@ -2,30 +2,119 @@ import "./App.css";
 import { useState } from "react";
 import { Button } from "./components/Button";
 import { Visor } from "./components/Visor";
+import calculator from "./utils/calculator";
 
 function App() {
   const [value, setValue] = useState({
-    number: 0,
     operation: "0",
     history: [],
   });
 
-  //console.log(value.history);
-
-  /** */
+  /**
+   * -----------------------------
+   * Shows the value on the screen
+   * -----------------------------
+   */
   const handleClick = (operation) => {
-    //console.log("Operation: ", operation);
+    console.log("Digitado: " + operation);
+
+    const specialCharacters = ["X", "AC", "%", "=", "/", "*", "-", "+", "+/-"];
+    let currentOperation = value.operation;
+    console.log("No current: " + currentOperation);
+
     if (value.history.length === 0) {
+      specialCharacters.forEach((character) => {
+        if (operation === character) {
+          switch (character) {
+            case "=":
+              setValue({
+                ...value,
+                operation: calculator(value.operation),
+              });
+              break;
+            case "X":
+              setValue({
+                ...value,
+                operation: "0",
+              });
+              break;
+            case "AC":
+              setValue({
+                ...value,
+                operation: "0",
+              });
+              break;
+          }
+        }
+      });
+      //console.log(`${operation} ` + Number.isNaN(Number(operation)));
       setValue({
         ...value,
-        operation: operation,
-        history: value.history.concat(operation),
+        operation: Number.isNaN(Number(operation)) ? "0" : operation,
+        history: specialCharacters.includes(operation)
+          ? []
+          : value.history.concat(operation),
       });
     } else {
+      specialCharacters.forEach((character) => {
+        if (operation === character) {
+          switch (character) {
+            case "=":
+              currentOperation = calculator(currentOperation);
+              break;
+            case "X":
+              currentOperation = currentOperation.slice(0, -1);
+              break;
+            case "AC":
+              currentOperation = "0";
+              break;
+            case "+/-":
+              currentOperation = calculator(`-(${currentOperation})`);
+              break;
+            case "*":
+              if (currentOperation.endsWith(operation)) {
+                break;
+              }
+              currentOperation = currentOperation + operation;
+              break;
+            case "/":
+              if (currentOperation.endsWith(operation)) {
+                break;
+              }
+              currentOperation = currentOperation + operation;
+              break;
+            case "+":
+              if (currentOperation.endsWith(operation)) {
+                break;
+              }
+              currentOperation = currentOperation + operation;
+              break;
+            case "-":
+              if (currentOperation.endsWith(operation)) {
+                break;
+              }
+              currentOperation = currentOperation + operation;
+              break;
+            case "%":
+              if (currentOperation.endsWith(operation)) {
+                break;
+              }
+              currentOperation = currentOperation + operation;
+              break;
+            default:
+              currentOperation = currentOperation + operation;
+              break;
+          }
+        }
+      });
+      //console.log("Noff default: " + value.operation);
       setValue({
         ...value,
-        operation: value.operation + operation,
-        history: value.history.concat(operation),
+        operation: specialCharacters.includes(operation)
+          ? currentOperation
+          : value.operation + operation,
+        history:
+          currentOperation === "0" ? [] : value.history.concat(operation),
       });
     }
   };
@@ -63,7 +152,7 @@ function App() {
               className="border-button"
               name="÷"
               onClick={() => {
-                handleClick("÷");
+                handleClick("/");
               }}
             ></Button>
           </div>
@@ -164,7 +253,7 @@ function App() {
             <Button
               name=","
               onClick={() => {
-                handleClick(",");
+                handleClick(".");
               }}
             ></Button>
             <Button
